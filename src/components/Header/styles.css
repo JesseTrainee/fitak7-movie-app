@@ -26,12 +26,13 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .header a:hover {
-  background-color: #bbb;
+  background-color: #4b4952;
   color: black;
+  font-weight: 800;
 }
 
 .header a.active {
@@ -42,4 +43,7 @@
 .header-right {
   margin: 8% 2% 0 0;
   float: right;
+}
+.header .link-icon:hover{
+  background-color: black;
 }

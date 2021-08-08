@@ -6,6 +6,7 @@
     background-color: #151418;
     color:#fff;
     transition: transform 100ms ease-in-out;
+    border-radius: 9px;
 }
 .movie:hover{
     transform: scale(1.05);
@@ -15,6 +16,8 @@
 }
 .card-title{
     font-size: 1em;
+    text-align: center;
+    padding:0.5em;
 }
 .card-footer{
     width: 100%;
@@ -33,8 +36,11 @@
     padding-left: 50px;
 }
 .far {
-    font-size: 1.7em;
+    font-size: 1.9em;
+    margin:0.2em;
+    color:rgb(73, 73, 73);
 }
 .fas {
-    font-size: 1.7em;
+    font-size: 1.9em;
+    margin:0.2em;
 }
