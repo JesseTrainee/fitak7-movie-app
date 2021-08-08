@@ -1,6 +1,6 @@
 .movies {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px;
-    margin: 3% 3% 0 3%;
+    margin: 0 3% 3% 3%;
   }

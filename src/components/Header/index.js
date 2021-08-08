@@ -1,16 +1,18 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./styles.css";
 import logo from "../../img/fitak7.png";
+
 
 export const Header = () => {
   return (
     <div class="header">
    
-       <img className="icon" src={logo}/>
+       <Link to="/" className="link-icon" ><img className="icon" src={logo}/></Link>
    
       <div class="header-right">
-        <a href="#search">Assistidos</a>
-        <a href="#about">Quero Assistir</a>
+        <Link to="/watched">Assistidos</Link>
+        <Link to="/mustwatch">Quero Assistir</Link>
       </div>
     </div>
   );

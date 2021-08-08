@@ -1,24 +1,24 @@
-import React, { useEffect } from "react";
-import { Header } from "../../components/Header";
+import React, { useEffect, useState } from "react";
 import { Movies } from "../../components/Movies";
 import storage from "../../utils/storage";
 
 
-function FavoritePage() {
+function WatchedPage() {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
-
+        handleMovies();
     },[])
 
     const handleMovies  = async () => {
         const watched = await storage.getWatched();
         setMovies(watched);
     }
+    
   return (
-    <div className="favorite-container">
+    <div >
         <Movies movies={movies} />
     </div>
   );
 }
 
-export default FavoritePage;
+export default WatchedPage;

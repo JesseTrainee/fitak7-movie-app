@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from "react";
-import storage from "../../utils/storage";
-import Favorite from "../Favorite";
+// import storage from "../../utils/storage";
+import { Watched } from "../Watched";
+import { MustWatch } from "../MustWatch";
 import "./styles.css";
-function Card({ title, poster, year, id }) {
-  const [favorite, setFavorite] = useState(false);
-  const [watched, setWatched] = useState([]);
-  const [mustwatch, setMustWatch] = useState([]);
+function Card(props) {
+  const [watched, setWatched] = useState(true);
+  const [mustWatch, setMustWatch] = useState(true);
 
   useEffect(() => {
-  
-  }, [favorite]);
+  }, [watched, mustWatch]);
 
-  const handleFavorite = async () => {
-    setFavorite(!favorite);
-  };
 
   return (
     <div className="movie">
-      <h2 className="card-title">{title}</h2>
-      <img src={poster}></img>
+      <h2 className="card-title">{props.movie.Title}</h2>
+      <img src={props.movie.Poster}></img>
       <div className="card-footer">
-        <h3>{year}</h3>
-        <button onClick={() => handleFavorite()}>
-          <Favorite
-            favorite={favorite}
-            id={id}
+        <h3>{props.movie.Year}</h3>
+
+  
+          <MustWatch
+          mustWatch={mustWatch}
+          setMustWatch={setMustWatch}
+          movie={props.movie}
+          />
+       
+          <Watched
             watched={watched}
+            movie={props.movie}
             setWatched={setWatched}
           />
-        </button>
+     
+
       </div>
     </div>
   );
