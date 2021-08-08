@@ -1,0 +1,40 @@
+.movie{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #151418;
+    color:#fff;
+    transition: transform 100ms ease-in-out;
+}
+.movie:hover{
+    transform: scale(1.05);
+}
+.movie img{
+   width: 100%;
+}
+.card-title{
+    font-size: 1em;
+}
+.card-footer{
+    width: 100%;
+    padding:3%
+}
+.card-footer h3{
+    float:left;
+}
+.card-footer button{
+    float:right;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.favorite h3{
+    padding-left: 50px;
+}
+.far {
+    font-size: 1.7em;
+}
+.fas {
+    font-size: 1.7em;
+}

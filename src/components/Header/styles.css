@@ -1,0 +1,45 @@
+.header {
+  /* position: fixed; */
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+.icon {
+  margin: 0 2em 0 2em;
+  width: 150px;
+  height: 150px;
+}
+.header .topics {
+  display: flex;
+  list-style-type: none;
+  /* justify-content: flex-end; */
+}
+.topics li {
+  padding: 10%;
+}
+
+
+.header a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.header a:hover {
+  background-color: #bbb;
+  color: black;
+}
+
+.header a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.header-right {
+  margin: 8% 2% 0 0;
+  float: right;
+}
