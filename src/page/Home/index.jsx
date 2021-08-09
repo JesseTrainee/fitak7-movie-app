@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Movies } from '../../components/Movies';
+
+
 import { loadMovies } from "../../utils/loadMovies";
 
 function Home() {
