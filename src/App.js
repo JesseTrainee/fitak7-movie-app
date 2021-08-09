@@ -1,13 +1,16 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Home from "./page/Home";
+
 import './globalstyles.css'
 import { Routes } from './utils/routes';
+import { MovieContext } from './context/Movie'
 function App() {
 
   return (
     <div className="App">
-      <Routes/>
+      <MovieContext>
+        <Routes/>
+      </MovieContext>
+     
     </div>
   );
 }

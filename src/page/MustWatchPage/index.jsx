@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Movies } from "../../components/Movies";
 import storage from "../../utils/storage";
 
-
 function MustWatchPage() {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
