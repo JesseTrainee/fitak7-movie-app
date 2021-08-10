@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import storage from "../../utils/storage";
-
+import { GlobalContext } from "../../context/Movie/index";
 export const Watched = ({ setWatched, watched, movie }) => {
-  useEffect(() => {}, [watched]);
+  const context = useContext(GlobalContext);
+  useEffect(() => {
+
+  }, [watched]);
+  useEffect(() => {
+    handleListMovie();
+  }, []);
 
   const handleWatched = async () => {
-    console.log(watched);
     setWatched(await !watched);
 
     let moviesWatched = await storage.getWatched();
     if (watched) {
+      context.setMovieReducer({ movie, mustWatch:false, watched }) ////aqui mudar
       if (moviesWatched) {
         moviesWatched.push(movie);
       } else {
@@ -23,6 +29,19 @@ export const Watched = ({ setWatched, watched, movie }) => {
         );
         storage.saveWatched(deleted);
       }
+    }
+  };
+
+  const handleListMovie = async () => {
+    const cont = await context.state.movies;
+    const watchContext = cont.filter( (e) => e.watched === true);
+    console.log(cont)
+    if (watchContext.length > 0) {
+      watchContext.map((e) => {
+        if (e.movie.imdbID === movie.imdbID) {
+          setWatched(!watched);
+        }
+      });
     }
   };
 
