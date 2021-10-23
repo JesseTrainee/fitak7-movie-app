@@ -18,6 +18,18 @@
 .topics li {
   padding: 10%;
 }
+.btn-search{
+  font-size: 0.7em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  
+}
+.fa-search{
+  background-color: #fff;
+  padding: 5px;
+  cursor: pointer;
+}
 
 
 .header a {
@@ -44,6 +56,12 @@
   margin: 8% 2% 0 0;
   float: right;
 }
+
 .header .link-icon:hover{
   background-color: black;
+}
+.search-bar{
+  height:4vh;
+  width: 18vw;
+  padding: 1em 0.3em  1em 0.3em
 }

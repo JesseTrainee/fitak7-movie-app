@@ -9,13 +9,13 @@ export const MovieContext = ({ children }) => {
   const setMovieReducer = (payload) => {
     dispatch({ type: "MOVIES_LIST", payload });
   };
-  // const setWatchInReducer = (payload) => {
-  //     dispatch({ type: 'WATCH_LIST' , payload})
-  // }
+  const deleteMovieInList = (payload) => {
+      dispatch({ type: 'DELETE_MOVIE_IN_LIST' , payload})
+  }
 
   return (
-    <GlobalContext.Provider value={{ state, setMovieReducer }}>
+    <GlobalContext.Provider value={{ state, setMovieReducer , deleteMovieInList }}>
       {children}
-    </GlobalContext.Provider>
+    </GlobalContext.Provider> 
   );
 };

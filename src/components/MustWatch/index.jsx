@@ -16,7 +16,8 @@ export const MustWatch = ({ setMustWatch, mustWatch, movie }) => {
     let moviesMustWatch = await storage.getMustWatch();
     
     if (mustWatch) {
-      context.setMovieReducer({ movie, mustWatch , watched:false });
+  
+      context.setMovieReducer({ movie, watched:false });
       if (moviesMustWatch) {
         moviesMustWatch.push(movie);
       } else {
@@ -28,6 +29,7 @@ export const MustWatch = ({ setMustWatch, mustWatch, movie }) => {
         const deleted = await moviesMustWatch.filter(
           (e) => e.imdbID !== movie.imdbID
         );
+        context.deleteMovieInList({ movie });
         storage.saveMustWatch(deleted);
       }
     }
@@ -58,9 +60,10 @@ export const MustWatch = ({ setMustWatch, mustWatch, movie }) => {
   const handleListMovie = async () => {
     //  console.log(await context.state.movies[0].movie.imdbID)
     const cont = await context.state.movies;
-    const mustWatchContext = cont.filter( (e) => e.mustWatch === true)
+    const mustWatchContext = cont.length > 0 ?  cont.filter( (e) => e.watched === false) : [];
    
-    if (mustWatchContext.length > 0) {
+      {!mustWatchContext && <span>Carregando...</span>}
+     {mustWatchContext.length > 0 &&
       mustWatchContext.map((e) => {
         if (e.movie.imdbID === movie.imdbID) {
           setMustWatch(!mustWatch);

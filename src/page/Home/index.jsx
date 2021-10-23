@@ -6,7 +6,7 @@ import { loadMovies } from "../../utils/loadMovies";
 
 function Home() {
   const [homeMovies, setHomeMovies] = useState([]);
-
+  
   useEffect(() => {
     handleMovies();
   }, []);

@@ -11,6 +11,10 @@ export const Header = () => {
        <Link to="/" className="link-icon" ><img className="icon" src={logo}/></Link>
    
       <div class="header-right">
+     
+        <input className="search-bar" type="text" placeholder="buscar"></input>
+        <button type="submit" className="btn-search"><i className="fas fa-search"></i></button>
+        
         <Link to="/watched">Assistidos</Link>
         <Link to="/mustwatch">Quero Assistir</Link>
       </div>

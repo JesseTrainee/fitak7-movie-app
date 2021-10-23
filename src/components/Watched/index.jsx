@@ -15,7 +15,7 @@ export const Watched = ({ setWatched, watched, movie }) => {
 
     let moviesWatched = await storage.getWatched();
     if (watched) {
-      context.setMovieReducer({ movie, mustWatch:false, watched }) ////aqui mudar
+      context.setMovieReducer({ movie, watched }) ////aqui mudar
       if (moviesWatched) {
         moviesWatched.push(movie);
       } else {
@@ -34,9 +34,9 @@ export const Watched = ({ setWatched, watched, movie }) => {
 
   const handleListMovie = async () => {
     const cont = await context.state.movies;
-    const watchContext = cont.filter( (e) => e.watched === true);
-    console.log(cont)
-    if (watchContext.length > 0) {
+    const watchContext = cont.length > 0 ? cont.filter( (e) => e.watched === true) : [];
+ 
+    {watchContext.length > 0 && 
       watchContext.map((e) => {
         if (e.movie.imdbID === movie.imdbID) {
           setWatched(!watched);
