@@ -1,7 +1,5 @@
 import React, {useEffect, useState } from "react";
-import { Movies } from '../../components/Movies';
-
-
+import { CardList } from "../../components/CardList";
 import { loadMovies } from "../../utils/movies";
 
 function Home() {
@@ -17,7 +15,7 @@ function Home() {
  
   return(
       <div className="home-container">
-          <Movies movies={homeMovies}/>
+          <CardList movies={homeMovies}/>
       </div>
   )
 }

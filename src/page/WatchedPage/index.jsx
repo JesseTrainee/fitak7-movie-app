@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Movies } from "../../components/Movies";
+import { CardList } from "../../components/CardList";
 import storage from "../../utils/storage";
 
 
@@ -16,7 +16,7 @@ function WatchedPage() {
     
   return (
     <div >
-        <Movies movies={movies} />
+        <CardList movies={movies} />
     </div>
   );
 }
