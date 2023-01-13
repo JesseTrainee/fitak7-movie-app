@@ -2,7 +2,7 @@ import React, {useEffect, useState } from "react";
 import { Movies } from '../../components/Movies';
 
 
-import { loadMovies } from "../../utils/loadMovies";
+import { loadMovies } from "../../utils/movies";
 
 function Home() {
   const [homeMovies, setHomeMovies] = useState([]);
