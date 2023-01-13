@@ -1,14 +1,17 @@
 export const reducer = (state,action) => {
     switch(action.type){
-        case 'MOVIES_LIST':{
+        case 'ADD_MOVIE':{
             return{ ...state, movies:[...state.movies,action.payload]} ;
         }
-        // case 'WATCH_LIST':{
-        //     return{ ...state, moviesWatch:[...state.moviesWatch,action.payload]} ;
-        // }
-        // case 'DELETE_MOVIE_IN_LIST':{
-        //     return{ ...state };
-        // }
+        case "REMOVE_MOVIE": {
+            console.log('REMOVING',state.movies.filter((item) => item.imdbID !== action.payload));
+            
+            return {
+                ...state,
+                movies: state.movies.filter((item) => item.imdbID !== action.payload),
+            }
+        }
+        default: return{...state}
     }
-    return{...state}
+    
 }

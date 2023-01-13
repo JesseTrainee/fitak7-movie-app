@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Watched } from "../Watched";
 import { MustWatch } from "../MustWatch";
 import "./styles.css";
-function Card(props) {
-  const [watched, setWatched] = useState(true);
-  const [mustWatch, setMustWatch] = useState(true);
+
+export default function Card(props) {
+  const [watched, setWatched] = useState(false);
+  const [mustWatch, setMustWatch] = useState(false);
 
   useEffect(() => {
   }, [watched, mustWatch]);
-
 
   return (
     <div className="movie">
@@ -18,11 +18,10 @@ function Card(props) {
       <div className="card-footer">
         <h3>{props.movie.Year}</h3>
 
-  
           <MustWatch
-          mustWatch={mustWatch}
-          setMustWatch={setMustWatch}
-          movie={props.movie}
+            mustWatch={mustWatch}
+            setMustWatch={setMustWatch}
+            movie={props.movie}
           />
        
           <Watched
@@ -30,11 +29,7 @@ function Card(props) {
             movie={props.movie}
             setWatched={setWatched}
           />
-     
-
       </div>
     </div>
   );
 }
-
-export default Card;

@@ -7,14 +7,15 @@ export const MovieContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, movieState);
 
   const setMovieReducer = (payload) => {
-    dispatch({ type: "MOVIES_LIST", payload });
+    dispatch({ type: "ADD_MOVIE", payload });
   };
-  // const setWatchInReducer = (payload) => {
-  //     dispatch({ type: 'WATCH_LIST' , payload})
-  // }
+
+  const removeMovieReducer = (id) => {
+      dispatch({ type: 'REMOVE_MOVIE' , id})
+  }
 
   return (
-    <GlobalContext.Provider value={{ state, setMovieReducer }}>
+    <GlobalContext.Provider value={{ state, setMovieReducer, removeMovieReducer }}>
       {children}
     </GlobalContext.Provider>
   );

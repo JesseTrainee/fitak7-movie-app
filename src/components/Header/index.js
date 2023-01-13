@@ -6,11 +6,11 @@ import logo from "../../img/fitak7.png";
 
 export const Header = () => {
   return (
-    <div class="header">
+    <div className="header">
    
        <Link to="/" className="link-icon" ><img className="icon" src={logo}/></Link>
    
-      <div class="header-right">
+      <div className="header-right">
         <Link to="/watched">Assistidos</Link>
         <Link to="/mustwatch">Quero Assistir</Link>
       </div>
