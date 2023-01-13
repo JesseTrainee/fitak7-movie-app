@@ -1,27 +1,52 @@
 import React, { useEffect, useContext } from "react";
 import storage from "../../utils/storage";
 import { GlobalContext } from "../../context/Movie/index";
-import { Movies } from "../Movies";
+
 export const MustWatch = ({ setMustWatch, mustWatch, movie }) => {
   const context = useContext(GlobalContext);
-
-  useEffect(() => {}, [mustWatch]);
+  let isMustWatch = mustWatch;
 
   useEffect(() => {
-    handleListMovie();
+    changeMustWatchIcon();
+    fillMovieContext();
   }, []);
 
-  const handleMustWatch = async () => {
-    setMustWatch(await !mustWatch);
+  /**
+   * Change mustWatch state
+  */
+  const changeMustWatchState = async () => {
+    setMustWatch(!mustWatch);
+    isMustWatch = !isMustWatch;
+  }
+  
+  /**
+   * Verify and fill movie context 
+  */
+  const fillMovieContext = async () => {
+    const cont = await context.state.movies;
     let moviesMustWatch = await storage.getMustWatch();
+
+    if (cont.length === 0 && moviesMustWatch) {
+      moviesMustWatch.map((elem) => {
+        context.setMovieReducer({ movie: elem, watched:false, mustWatch: true });
+      })
+    }
+  }
+
+  /**
+   * Save mustWatch movies on storage memory
+  */
+  const saveMustWatchMovies = async (moviesMustWatch) => {
     
-    if (mustWatch) {
-      context.setMovieReducer({ movie, mustWatch , watched:false });
+    if (isMustWatch) {
+      context.setMovieReducer({ movie, watched:false, mustWatch: isMustWatch }) ////aqui mudar
+
       if (moviesMustWatch) {
         moviesMustWatch.push(movie);
       } else {
         moviesMustWatch = [movie];
       }
+
       storage.saveMustWatch(await moviesMustWatch);
     } else {
       if (moviesMustWatch) {
@@ -29,41 +54,28 @@ export const MustWatch = ({ setMustWatch, mustWatch, movie }) => {
           (e) => e.imdbID !== movie.imdbID
         );
         storage.saveMustWatch(deleted);
+
+        context.removeMovieReducer(movie.imdbID);
       }
     }
+  }
+
+  const handleMustWatch = async () => {
+    // get movies from local storage
+    let moviesMustWatch = await storage.getMustWatch();
+
+    await changeMustWatchState();
+    saveMustWatchMovies(moviesMustWatch);
   };
-  // const handleMustWatch = async () => {
-  //   const mustWatchContext = await context.state.movies;
-  //   setMustWatch(!mustWatch);
-  //   // let moviesMustWatch = await storage.getMustWatch();
-  //   if (mustWatch) {
-  //     context.setMovieInList({ movie, mustWatch });
-  //     // if(moviesMustWatch){
-  //     //     moviesMustWatch.push(movie)
-  //     // }else{
-  //     //     moviesMustWatch = [movie];
 
-  //     //     storage.saveMustWatch(moviesMustWatch);
-  //   } else {
-  //     if (mustWatchContext > 0) {
-  //       const deleted = await mustWatchContext.filter((e) => e.imdbID !== movie.imdbID);
-  //       console.log(deleted)
-  //       context.deleteMovieInList({ deleted, mustWatch });
-  //       //         storage.saveMustWatch(deleted);
-  //       //     }
-  //     }
-  //   }
-  // };
-
-  const handleListMovie = async () => {
-    //  console.log(await context.state.movies[0].movie.imdbID)
+  const changeMustWatchIcon = async () => {
     const cont = await context.state.movies;
-    const mustWatchContext = cont.filter( (e) => e.mustWatch === true)
-   
-    if (mustWatchContext.length > 0) {
-      mustWatchContext.map((e) => {
+    const watchContext = cont.filter( (e) => e.mustWatch === true);
+
+    if (watchContext.length > 0) {
+      watchContext.map((e) => {
         if (e.movie.imdbID === movie.imdbID) {
-          setMustWatch(!mustWatch);
+          changeMustWatchState();
         }
       });
     }
@@ -72,10 +84,10 @@ export const MustWatch = ({ setMustWatch, mustWatch, movie }) => {
   return (
     <>
       <button onClick={() => handleMustWatch()}>
-        {mustWatch ? (
-          <i className="far fa-bookmark"></i>
-        ) : (
+        {isMustWatch ? (
           <i className="fas fa-bookmark"></i>
+        ) : (
+          <i className="far fa-bookmark"></i>
         )}
       </button>
     </>

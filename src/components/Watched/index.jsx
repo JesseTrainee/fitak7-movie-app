@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import storage from "../../utils/storage";
 import { GlobalContext } from "../../context/Movie/index";
 
@@ -72,7 +72,6 @@ export const Watched = ({ setWatched, watched, movie }) => {
     const cont = await context.state.movies;
     const watchContext = cont.filter( (e) => e.watched === true);
 
-    console.log(cont);
     if (watchContext.length > 0) {
       watchContext.map((e) => {
         if (e.movie.imdbID === movie.imdbID) {

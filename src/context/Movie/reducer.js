@@ -4,8 +4,6 @@ export const reducer = (state,action) => {
             return{ ...state, movies:[...state.movies,action.payload]} ;
         }
         case "REMOVE_MOVIE": {
-            console.log('REMOVING',state.movies.filter((item) => item.imdbID !== action.payload));
-            
             return {
                 ...state,
                 movies: state.movies.filter((item) => item.imdbID !== action.payload),
